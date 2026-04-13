@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-class TaskModel {
 
+class TaskModel {
   final String id;
   final String title;
   final String category;
@@ -12,21 +12,25 @@ class TaskModel {
   final double estimatedEffortHours;
   final String energyLevel;
 
-  TaskModel ({
+  TaskModel({
     required this.id, required this.title, required this.category,
     required this.date, required this.startTime, required this.endTime,
     required this.urgency, required this.importance, required this.estimatedEffortHours, required this.energyLevel
-});
+  });
 
-  Map<String,dynamic> toJson() {
+  Map<String, dynamic> toJson() {
     return {
-      'id': id,'title': title, 'category' : category,
+      'id': id,
+      'title': title,
+      'category': category,
       'date': date.toIso8601String().split('T').first,
-      'startTime': '\${startTime.hour} : \${startTime.minute}',
-      'endTime': '\${endTime.hour} : \${endTime.minute}',
-      'urgency': urgency, 'importance' :  importance,
-      'estimatedEffectHours' : estimatedEffortHours, 'energyLevel' : energyLevel,
-
+      // Fixed interpolation: removed the backslashes
+      'startTime': '${startTime.hour}:${startTime.minute}',
+      'endTime': '${endTime.hour}:${endTime.minute}',
+      'urgency': urgency,
+      'importance': importance,
+      'estimatedEffortHours': estimatedEffortHours,
+      'energyLevel': energyLevel,
     };
   }
 }
